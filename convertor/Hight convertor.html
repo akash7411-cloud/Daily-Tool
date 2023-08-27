@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Height Converter</title>
+    <style media="screen">
+    body{
+      background: #076fde;
+      font-family: sans-serif;
+    }
+      form{
+    margin: 50px auto;
+    width: 450px;
+    height: 530px;
+    background-color: white;
+}
+
+label {
+    width: 150px;
+    color: black;
+    margin:  25px 50px 25px 20px;
+    font-size: 1.5em;
+
+}
+input{
+  border: 1.5px solid #97999c;
+}
+input#feet{
+    height: 40px;
+    width: 200px;
+    padding-left: 25px;
+    margin-left: 20px;
+    font-size: 1.5em;
+
+}
+
+input#inches{
+    height: 40px;
+    width: 200px;
+    padding-left: 25px;
+    font-size: 1.5em;
+
+}
+
+h1{
+    text-align: center;
+    color: white;
+    background: #033d67;
+    font-size: 28px;
+    padding: 5px;
+
+}
+
+.row{
+    width: 400px;
+    text-align: left;
+    margin: 40px auto;
+}
+
+#button{
+    background-color: #03457b;
+    border: none;
+    color: white;
+    width: 175px;
+    padding: 15px 15px;
+    line-height: 1.2em;
+    font-size: 1.2em;
+    text-align: center;
+    margin: 30px 120px;
+}
+
+#results{
+    color: #064999;
+    text-align: center;
+    width: 80%;
+    height: 100px;
+    margin: 10% auto;
+    box-shadow: 0 0 20px rgba(0,139,253,0.3);
+    font-size: 2.5em;
+}
+    </style>
+</head>
+<body>
+    <form action="" id="calculator">
+        <h1>Height Converter</h1>
+       <div id="results"></div>
+        <div class="row">
+        <label for="feet">Feet</label><input id="feet"><br>
+        </div>
+        <div class="row">
+        <label for="inches">Inches</label><input id="inches"><br>
+        </div>
+        <div class="row">
+        <input id="button" type="submit" value="Convert to cm">
+        </div>
+
+    </form>
+    <script>
+      const form = document.querySelector('form');
+
+form.addEventListener('submit', function(e){
+    //grab content from feet input
+let feet = document.querySelector('#feet');
+let inches = document.querySelector('#inches');
+const results = document.querySelector('#results');
+    e.preventDefault();
+
+    feet = parseInt(feet.value);
+    inches = parseInt(inches.value);
+
+    if (isNaN(feet) || isNaN(inches)){
+        results.textContent = "Please enter a valid number!";
+    } else if (feet < 0 ) {
+        results.textContent = "Please enter a feet value > 0";
+    } else if (inches < 0 || inches >= 12) {
+        results.textContent = "Please enter an inch value between 0 and 12";
+    } else {
+        //make conversion to centimers
+        //cm = inches * 2.54
+        let totalInches = (feet*12) + inches;
+        results.textContent = `${totalInches} cm`;
+        document.querySelector('#feet').value = '';
+        document.querySelector('#inches').value = '';
+    }
+})
+    </script>
+</body>
+</html>

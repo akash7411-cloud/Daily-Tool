@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<title>Feet to Inches Converter</title>
+<body>
+<h2>Length Converter</h2>
+<p>Type a value in the Feet field to convert the value to Inches:</p>
+<p>
+<label>Feet</label>
+<input id="inputFeet" type="number" placeholder="Feet" oninput="LengthConverter(this.value)" onchange="LengthConverter(this.value)">
+</p>
+<p>Inches: <span id="outputInches"></span></p>
+<script>
+function LengthConverter(valNum) {
+document.getElementById("outputInches").innerHTML=valNum*12;
+}
+</script>
+</body>
+</html>
